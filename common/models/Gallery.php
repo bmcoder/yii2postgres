@@ -52,4 +52,23 @@ class Gallery extends \yii\db\ActiveRecord
            $data = self::find()->all();
            return $data;
     }
+    /* фильтр изображений по тегу*/
+    public static function getTag($tag)
+    {
+          $data = self::getAll();
+          $guids = [];
+          foreach ($data as $items)
+          {
+            foreach ($items->tags as $key => $value)
+            {
+              if($value==$tag)
+              {
+                $guids[] = $items->guid;
+              }
+            }
+          }
+
+          $data = self::find()->Where(['in','guid',$guids])->all();
+          return $data;
+    }
 }

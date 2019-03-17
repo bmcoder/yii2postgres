@@ -20,22 +20,24 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="site-about"></div>
 
-<?php foreach ($varInView as $item): ?>
-  <div class="row">
+<?php
+//var_dump($varInView);
+ foreach ($varInView as $item): ?>
+  <!-- <div class="row"> -->
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-        <img src="<?= Yii::$app->params['backendUrl'] .'/'. $item->img; ?>">
+        <img style="height: 250px;" src="<?= Yii::$app->params['backendUrl'] .'/'. $item->img; ?>">
         <div class="caption">
           <h3><?php echo $item->description; ?></h3>
           <p>
               <b>Теги:</b>
               <?php $tags = $item->tags ?>
                 <?php foreach ($tags as $tag => $val): ?>
-                  <?= $val ?>
+                  <a href="<?= Yii::$app->getUrlManager()->createUrl(['gallery/index', 'tag' => $val]); ?>" class="btn btn-default"><?= $val ?></a>
                 <?php endforeach ?>
           </p>
         </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 <?php endforeach ?>

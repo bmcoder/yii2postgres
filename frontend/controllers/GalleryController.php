@@ -17,9 +17,16 @@ class GalleryController extends Controller
 {
     public function actionIndex()
     {
-      $array = Gallery::getAll();
-      return $this->render('index',['varInView' => $array]);
-        //return $this->render('index');
+      if(isset($_REQUEST['tag'])) // если выбран фильтр тегов
+      {
+        $array = Gallery::getTag($_REQUEST['tag']);
+        return $this->render('index',['varInView' => $array]);
+      }
+      else
+      {
+        $array = Gallery::getAll();
+        return $this->render('index',['varInView' => $array]);
+      }
     }
 
 }
