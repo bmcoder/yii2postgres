@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
 
@@ -45,5 +45,11 @@ class Gallery extends \yii\db\ActiveRecord
             'img' => 'Img',
             'description' => 'Description',
         ];
+    }
+
+    public static function getAll()
+    {
+           $data = self::find()->all();
+           return $data;
     }
 }
